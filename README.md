@@ -17,7 +17,7 @@ To install and set up this project locally, follow these steps:
 
 1. Clone the repository and open the folder:
 
-	git clone https://github.com/Saquial-g/GPT_API_Endpoint.git
+	git clone https://github.com/Saquial-g/LibraryDB_REST_API.git
     	cd GPT_API_Endpoint
 
 2. Create a database on MySQL with the name "librarydb".
