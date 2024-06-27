@@ -36,7 +36,7 @@ To install and set up this project locally, follow these steps:
 	
 ## Usage
 
-#### API
+### API
 
 To start the REST API for development, run the following command:
 
@@ -44,40 +44,73 @@ php artisan serve
 
 It's important to consider that this is for development only, and shouldn't be deployed as a public server.
 
-#### Test webpage
+### Test webpage
 
 Inside of test_htdocs there's a simple webpage which tests all the REST API functions. The website should be deployed in a simple web server for testing. 
 The website has a variable $address which defines the address of the REST API, it should be changed if the address in which the API is deployed varies from the default 127.0.0.1:8000 address.
 
-### API Endpoints
+## API Endpoints
 
-#### Create
+### Fetch CSRF token
+
+- URL: {{baseURL}}/api/csrf
+- Method: GET
+- Response: a json with a CSRF token corresponding to the current user.
+- Explanation: Lavarel uses a CSRF token system to increase the security of the server, so it's necesary for any user to be able to get a token to interact with the API. This endpoint receives a GET request without any data. 
+The API generates a CSRF token for the client to be able to make POST and DELETE requests to the API.
+
+### Create
 
 - URL: {{baseURL}}/api/library
 - Method: POST
 - Additional headers:
-    - X-CSRF-TOKEN: csrf token which authorizes POST requests. Has to be defined manually if using testing APIs like Postman.
+    - X-CSRF-TOKEN: csrf token which authorizes POST requests. Has to be defined manually if using testing APIs like Postman. Can be obtained with the "/api/csrf" endpoint.
 - Body:
     - "title": (required) Title of the book
     - "author": (required) Author of the book
     - "publication_date": (required) Date in which the book was released, uses a YYYY-MM-DD format
     - "genre": (required) Genre of the book.
 - Response: a json with the given information will be returned if the data is correct (200 OK), otherwise the data given was invalid and nothing will be returned (400 bad request).
-- Explanation: this endpoint receives a POST request which contains the data for a new book in its body. The API uses the LibraryController which checks that the information is valid and then creates an instance with said data, which is later saved into the library database.
+- Explanation: this endpoint receives a POST request which contains the data for a new book in its body. The API uses LibraryController which checks that the information is valid and then creates an instance with said data, 
+which is later saved into the library database.
 
-#### Read all (Fetch data of all the books)
+### Read all (Fetch data of all the books)
 
 - URL: {{baseURL}}/api/library
 - Method: GET
 - Response: a json with the data of all the books in the database will be returned if there is data (200 OK), otherwise there is no data in the database (404 not found).
 - Explanation: this endpoint receives a GET request without any data. The API uses the LibraryController which gathers all the data from the database and returns it in a json.
 
-#### Read (Fetch data of one book)
+### Read (Fetch data of one book)
 
 - URL: {{baseURL}}/api/library/{id}
 - Method: GET
 - Response: a json with the data of the requested book will be returned if it exists (200 OK), otherwise it doesn't exist (404 not found).
-- Explanation: this endpoint receives a GET request which indicates in the URL the ID of the book to fetch. The API uses the LibraryController which gathers the data of the requested book from the database and returns it in a json.
+- Explanation: this endpoint receives a GET request which indicates in the URL the ID of the book to fetch. The API uses LibraryController which gathers the data of the requested book from the database and returns it in a json.
+
+### Update
+
+- URL: {{baseURL}}/api/library/{id}
+- Method: POST
+- Additional headers:
+    - X-CSRF-TOKEN: csrf token which authorizes POST requests. Has to be defined manually if using testing APIs like Postman. Can be obtained with the "/api/csrf" endpoint.
+- Body:
+    - "title": (required) Title of the book
+    - "author": (required) Author of the book
+    - "publication_date": (required) Date in which the book was released, uses a YYYY-MM-DD format
+    - "genre": (required) Genre of the book.
+- Response: a json with the given information will be returned if the data is correct (200 OK), otherwise the data given was invalid and nothing will be returned (400 bad request).
+- Explanation: this endpoint receives a POST request which contains the data of a book in its body. The API uses LibraryController which checks that the information is valid and then overrides the information of the book 
+corresponding to the ID provided in the address.
+
+### Delete
+
+- URL: {{baseURL}}/api/library
+- Method: DELETE
+- Additional headers:
+    - X-CSRF-TOKEN: csrf token which authorizes POST requests. Has to be defined manually if using testing APIs like Postman. Can be obtained with the "/api/csrf" endpoint.
+- Response: A message indicating the correct removal of the book from the database is returned
+- Explanation: this endpoint receives a DELETE request which indicates in the URL the ID of the book to delete. The API uses LibraryController which removes the book from the database.
 
 ## Configuration
 
