@@ -38,15 +38,16 @@ To install and set up this project locally, follow these steps:
 
 #### API
 
-To start the REST API itself, run the following command:
+To start the REST API for development, run the following command:
 
 php artisan serve
 
-The server will start running at http://localhost:8000/.
+It's important to consider that this is for development only, and shouldn't be deployed as a public server.
 
-#### Webpage
+#### Test webpage
 
-To deploy the webpage instead
+Inside of test_htdocs there's a simple webpage which tests all the REST API functions. The website should be deployed in a simple web server for testing. 
+The website has a variable $address which defines the address of the REST API, it should be changed if the address in which the API is deployed varies from the default 127.0.0.1:8000 address.
 
 ### API Endpoints
 

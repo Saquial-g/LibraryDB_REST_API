@@ -32,7 +32,7 @@ class LibraryController extends Controller
             return response()->json($book, 200);
         }
         else {
-            return response()->json(null, 400);
+            return response()->json($request, 400);
         }
         
     }
