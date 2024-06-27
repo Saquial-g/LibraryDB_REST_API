@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 # Controller in charge of managing interactions with the database
 class LibraryController extends Controller
 {
+    public function token(Request $request) {
+        return response()->json(['csrf_token' => csrf_token()], 200);
+    }
+
     # ------------ CRUD Operations ------------
 
     # Create
     public function new(Request $request) {
-
         if($this->isValidBook($request)){
             try {
                 $book = Book::create([
@@ -73,7 +76,7 @@ class LibraryController extends Controller
     # Delete
     public function remove($id) {
         Book::destroy($id);
-        return response()->json(null, 204);
+        return response()->json(['message' => 'Book deleted successfully'], 200);;
     }
 
     # ------------ Aditional functions ------------

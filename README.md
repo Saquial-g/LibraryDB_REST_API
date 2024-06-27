@@ -31,24 +31,31 @@ To install and set up this project locally, follow these steps:
 4. Run the database structure migration: 
 
 	php artisan migrate
+
+5. Install Node.js following the instructions from the website https://nodejs.org/en/download
 	
-    
 ## Usage
 
-To start the server, run the following command:
+#### API
+
+To start the REST API itself, run the following command:
 
 php artisan serve
 
 The server will start running at http://localhost:8000/.
 
+#### Webpage
+
+To deploy the webpage instead
+
 ### API Endpoints
 
 #### Create
 
-- URL: /library
+- URL: {{baseURL}}/api/library
 - Method: POST
 - Additional headers:
-    - X-CSRF-TOKEN: csrf token which authorizes POST requests. Has to be defined manually if using testing APIs like Postman
+    - X-CSRF-TOKEN: csrf token which authorizes POST requests. Has to be defined manually if using testing APIs like Postman.
 - Body:
     - "title": (required) Title of the book
     - "author": (required) Author of the book
@@ -57,16 +64,16 @@ The server will start running at http://localhost:8000/.
 - Response: a json with the given information will be returned if the data is correct (200 OK), otherwise the data given was invalid and nothing will be returned (400 bad request).
 - Explanation: this endpoint receives a POST request which contains the data for a new book in its body. The API uses the LibraryController which checks that the information is valid and then creates an instance with said data, which is later saved into the library database.
 
-### Read all (Fetch data of all the books)
+#### Read all (Fetch data of all the books)
 
-- URL: /library
+- URL: {{baseURL}}/api/library
 - Method: GET
 - Response: a json with the data of all the books in the database will be returned if there is data (200 OK), otherwise there is no data in the database (404 not found).
 - Explanation: this endpoint receives a GET request without any data. The API uses the LibraryController which gathers all the data from the database and returns it in a json.
 
-### Read (Fetch data of one book)
+#### Read (Fetch data of one book)
 
-- URL: /library/{id}
+- URL: {{baseURL}}/api/library/{id}
 - Method: GET
 - Response: a json with the data of the requested book will be returned if it exists (200 OK), otherwise it doesn't exist (404 not found).
 - Explanation: this endpoint receives a GET request which indicates in the URL the ID of the book to fetch. The API uses the LibraryController which gathers the data of the requested book from the database and returns it in a json.
