@@ -44,10 +44,16 @@ php artisan serve
 
 It's important to consider that this is for development only, and shouldn't be deployed as a public server.
 
-### Test webpage
+### Example webpage
 
-Inside of test_htdocs there's a simple webpage which tests all the REST API functions. The website should be deployed in a simple web server for testing. 
+Inside of custom_testing/htdocs there's a simple webpage (testLibrary.php) which uses all the REST API functions. The website should be deployed in a simple web server for an usage demostration. 
 The website has a variable $address which defines the address of the REST API, it should be changed if the address in which the API is deployed varies from the default 127.0.0.1:8000 address.
+
+### Automated tests
+
+Inside of custom_testing/auto_test there's a python program (CRUD_auto_tests.py) which tests all the REST API's CRUD operations. To use it, edit the value of BASE_URL to the one corresponding to the API's address and run:
+
+	python CRUD_auto_tests.py
 
 ## API Endpoints
 
