@@ -16,22 +16,22 @@ This is a technical test for an REST API which manages a small book database by 
 To install and set up this project locally, follow these steps:
 
 1. Clone the repository and open the folder:
-
+	```
 	git clone https://github.com/Saquial-g/LibraryDB_REST_API.git
     	cd GPT_API_Endpoint
-
+	```
 2. Create a database on MySQL with the name "librarydb".
 
 3. Clone the example .env file and set up environment variables: 
-	
+	```
 	copy .env.example .env
-	
+	```
 	- Modify the .env file according to your local project requirements. Read subsection "Environment Variables" for more details.
 
 4. Run the database structure migration: 
-
+	```
 	php artisan migrate
-
+	```
 5. Install Node.js following the instructions from the website https://nodejs.org/en/download
 	
 ## Usage
@@ -39,9 +39,9 @@ To install and set up this project locally, follow these steps:
 ### API
 
 To start the REST API for development, run the following command:
-
-php artisan serve
-
+	```
+	php artisan serve
+	```
 It's important to consider that this is for development only, and shouldn't be deployed as a public server.
 
 ### Example webpage
@@ -52,9 +52,9 @@ The website has a variable $address which defines the address of the REST API, i
 ### Automated tests
 
 Inside of custom_testing/auto_test there's a python program (CRUD_auto_tests.py) which tests all the REST API's CRUD operations. To use it, edit the value of BASE_URL to the one corresponding to the API's address and run:
-
+	```
 	python CRUD_auto_tests.py
-
+	```
 ## API Endpoints
 
 ### Fetch CSRF token

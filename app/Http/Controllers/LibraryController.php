@@ -76,7 +76,7 @@ class LibraryController extends Controller
     # Delete
     public function remove($id) {
         Book::destroy($id);
-        return response()->json(['message' => 'Book deleted successfully'], 200);;
+        return response()->json(['message' => 'Book deleted successfully'], 200);
     }
 
     # ------------ Aditional functions ------------
