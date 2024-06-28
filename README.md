@@ -18,7 +18,7 @@ To install and set up this project locally, follow these steps:
 1. Clone the repository and open the folder:
 	```
 	git clone https://github.com/Saquial-g/LibraryDB_REST_API.git
-    	cd GPT_API_Endpoint
+	cd GPT_API_Endpoint
 	```
 2. Create a database on MySQL with the name "librarydb".
 
@@ -52,9 +52,9 @@ The website has a variable $address which defines the address of the REST API, i
 ### Automated tests
 
 Inside of custom_testing/auto_test there's a python program (CRUD_auto_tests.py) which tests all the REST API's CRUD operations. To use it, edit the value of BASE_URL to the one corresponding to the API's address and run:
-	```
+	
 	python CRUD_auto_tests.py
-	```
+	
 ## API Endpoints
 
 ### Fetch CSRF token
